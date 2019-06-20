@@ -1,0 +1,8 @@
+apiVersion: "aadpodidentity.k8s.io/v1"
+kind: AzureIdentity
+metadata:
+  name: msitestservice
+spec:
+  type: 0
+  ResourceID: /subscriptions/7060bca0-7a3c-44bd-b54c-4bb1e9facfac/resourcegroups/testflaskservice/providers/Microsoft.ManagedIdentity/userAssignedIdentities/msitestservice
+  ClientID: a1bf9c08-98e6-4672-9668-d2a019a984cc

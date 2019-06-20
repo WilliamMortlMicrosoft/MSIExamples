@@ -1,0 +1,18 @@
+{
+    "name": "test-node-aks-msi-keyvault-example",
+    "description": "uses MSI in an AKS cluster to pull a secret from key vault",
+    "version": "0.0.1",
+    "private": true,
+    "license": "MIT",
+    "author": "Microsoft",
+    "engines": {
+        "node": ">=6.9.1"
+    },
+    "scripts": {
+        "start": "node index.js"
+    },
+    "dependencies": {
+        "azure-keyvault": "^3.0.4",
+        "ms-rest-azure": "^2.5.7"
+    }
+}

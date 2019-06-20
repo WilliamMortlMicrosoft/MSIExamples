@@ -1,0 +1,40 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nodetest
+  labels:
+    app: nodetest
+    aadpodidbinding: msitestservice_it
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: nodetest
+        aadpodidbinding: msitestservice_it
+    spec:
+      containers:
+      - name: nodetest
+        image: testflaskserviceacr.azurecr.io/nodetest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        env:
+        - name: keyvaulturl
+          value: "https://testflaskservicekv.vault.azure.net"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodetest-lb
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8080
+  selector:
+    app: nodetest
